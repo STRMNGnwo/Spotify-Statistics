@@ -45,7 +45,7 @@ const Profile=(props)=>{
 
     useEffect(()=>{ //on initial render a call must be made to the /getAccessToken endpoint.
         //an access token and a refresh token are returned by the getAccessToken endpoint, if code is valid.
-        if(code==undefined||code==null)
+        if(code===undefined||code===null)
         {
             console.log("You seem to have not given permissions.....Redirecting back to home page");
             history.push("/")
@@ -77,7 +77,7 @@ const Profile=(props)=>{
                              console.log("Profile",response);
                              profileData=response.data; 
                              console.log(profileData);
-                            loggedIn=true;
+                            //loggedIn=true;
                             console.log("Logged in: ",loggedIn);
                             setProfileDetails(profileData); 
             

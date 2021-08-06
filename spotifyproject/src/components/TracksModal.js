@@ -26,7 +26,7 @@ const TracksModal=(props)=>{
         console.log("In the audio Function");
         console.log("Value of playAndPause is ",playAndPause);
         
-        if(playAndPause%2!=0) //if clicks are not divisible by 2 then play(assuming every other click is to pause )
+        if(playAndPause%2!==0) //if clicks are not divisible by 2 then play(assuming every other click is to pause )
         {
             audio.play();
         }
@@ -36,7 +36,7 @@ const TracksModal=(props)=>{
     }
     return(
         <div style={ getModalStyle() } className={classes.paper}> 
-        <img style={imageStyle} src={props.image} onClick={()=>audioFunction(props.previewURL)}></img> 
+        <img style={imageStyle} src={props.image} onClick={()=>audioFunction(props.previewURL)} alt="Album Cover from Spotify"></img> 
         <Typography style={{textAlign:"center"} } color="textPrimary" variant="subtitle1">{playInstruction} </Typography> 
 
          <Typography style={{textAlign:"center"} } color="textPrimary" variant="h6">Track:{props.name} </Typography>  

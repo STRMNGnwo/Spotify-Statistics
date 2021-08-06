@@ -10,13 +10,13 @@ const Header=(props)=>{ //the Header Component which can be used across all the 
     const link=props.link;
     const text=props.linkText;
 
-    const styles={ //isn't being used currently, might use it later
+    /*const styles={ //isn't being used currently, might use it later
         navLink:{
             fontSize:20,
             fontWeight: "bold",
             color:headerStyle.color
         }
-    }
+    }*/
    
     return(
         <>

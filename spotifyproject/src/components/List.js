@@ -14,7 +14,7 @@ const List=(props)=>{
     var modalBody;
 
     //var modalBody= <> <img style={imageStyle} src={props.imageObject.url}></img>  <Typography style={{textAlign:"center"} } color="textPrimary" variant="body1">Name:{props.name} </Typography>     </>
-    if(props.type=="Artist"){
+    if(props.type==="Artist"){
         const imageURL=props.artistImage.url;
         const artistName= props.name;
         const artistFollowers=props.followers;
@@ -24,7 +24,7 @@ const List=(props)=>{
         
     }
     
-    if(props.type=="Track")
+    if(props.type==="Track")
     {
         modalBody=<TracksModal name={props.name} image={props.albumImage.url} album={props.album} artist={props.artist} previewURL={props.previewURL} />
     }

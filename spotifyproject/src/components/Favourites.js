@@ -5,7 +5,7 @@ const Favourites=(props)=>{
 
     console.log("Data passed to props is: ",props);
         
-    if(props.content==null||props.content==undefined)
+    if(props.content===null||props.content===undefined)
         {
             return(
         <Grid item xs={12} sm={12} md={12} >

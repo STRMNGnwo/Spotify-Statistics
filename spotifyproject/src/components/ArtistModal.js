@@ -18,7 +18,7 @@ const ArtistModal=(props)=>{
 
     return(
         <div style={ getModalStyle() } className={classes.paper}> 
-        <img style={imageStyle} src={props.image}></img> 
+        <img style={imageStyle} src={props.image} alt="Artist Head in a frame from Spotify"></img> 
          <Typography style={{textAlign:"center"} } color="textPrimary" variant="h6">Name:{props.name} </Typography>   
          <Typography style={{textAlign:"center"} } color="textPrimary" variant="h6">Followers:{props.followers} </Typography>     
          <Typography style={{textAlign:"center"} } color="textPrimary" variant="h6">Genres:{props.genres} </Typography>      

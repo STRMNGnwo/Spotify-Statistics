@@ -16,9 +16,9 @@ const ProfileCardComponent=(props)=>{
     profilePicture=props.content.images[0];
 
     //if user has a Spotify profile picture use it, otherwise use the default image.
-    const profilePictureSource= (profilePicture==null||profilePicture==undefined)?DefaultProfilePicture:profilePicture.url
+    const profilePictureSource= (profilePicture===null||profilePicture===undefined)?DefaultProfilePicture:profilePicture.url
 
-    if(props.content==null||props.content==undefined) //technically, this should not happen
+    if(props.content===null||props.content===undefined) //technically, this should not happen
     {
         return(
             <p>""</p>

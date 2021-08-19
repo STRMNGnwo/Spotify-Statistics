@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {Typography,Grid} from "@material-ui/core"
 import Header from "./Header"
-import ProfileCardComponent from "./ProfileCardComponent"
+import ProfileCard from "./ProfileCard"
 import Favourites from "./Favourites.js"
 import List from "./List"
 import Footer from "./Footer"
@@ -12,7 +12,6 @@ import axios from "axios"
 const Profile=(props)=>{
 
     const[currentDarkMode, setDarkMode]=useState(false);
-    //const [loggedIn,setLoggedIn]=useState(false);
     const [profileDetails,setProfileDetails]=useState(null);
     const [favouriteArtists,setFavouriteArtists]=useState(null);
     const [favouriteTracks,setFavouriteTracks]=useState(null);
@@ -22,16 +21,17 @@ const Profile=(props)=>{
     const buttonLink="http://localhost:3001/logout";
     var profileData;
 
-     console.log(currentDarkMode);
+    console.log(currentDarkMode);
 
-      var pageStyle= currentDarkMode?{backgroundColor:"black",color:"white"}:{backgroundColor:"white",color:"black"};
-      var appbarStyle=currentDarkMode?{background:"green",color:"black",border:"solid",borderColor:"black"}:{background:"black",color:"white"};
-  
+    var pageStyle= currentDarkMode?{backgroundColor:"black",color:"white"}:{backgroundColor:"white",color:"black"};
+    var appbarStyle=currentDarkMode?{background:"green",color:"black",border:"solid",borderColor:"black"}:{background:"black",color:"white"};
+    const listStyle={background: "green", color: "black", border: "solid", borderColor: "black"};
+
      const changeBackgroundColour=()=>{
-     pageStyle=currentDarkMode?{ backgroundColor:"white",color:"black" }: {  backgroundColor:"black",color:"white" }
-     document.body.style.backgroundColor=pageStyle.backgroundColor; //probably bad practice, but only way to ensure the entire page colour changes.
-    setDarkMode(!currentDarkMode); //changing the state, thus triggering a re-render of the component.
-  }
+        pageStyle=currentDarkMode?{ backgroundColor:"white",color:"black" }: {  backgroundColor:"black",color:"white" }
+       //document.body.style.backgroundColor=pageStyle.backgroundColor; //probably bad practice, but only way to ensure the entire page colour changes.
+        setDarkMode(!currentDarkMode); //changing the state, thus triggering a re-render of the component.
+    }
      //React Router passes in stuff like query string parameters as a property of location props object 
      console.log(props.location) 
 
@@ -40,10 +40,11 @@ const Profile=(props)=>{
      const params=new URLSearchParams(queryString); 
      const code=params.get("code");
 
-     console.log("The authorization code is:", code); //getting the authorization code value
+    // console.log("The authorization code is:", code); //getting the authorization code value
     
 
-    useEffect(()=>{ //on initial render a call must be made to the /getAccessToken endpoint.
+    useEffect( ()=>{ 
+         //on initial render a call must be made to the /getAccessToken endpoint.
         //an access token and a refresh token are returned by the getAccessToken endpoint, if code is valid.
         if(code===undefined||code===null)
         {
@@ -80,13 +81,12 @@ const Profile=(props)=>{
                             //loggedIn=true;
                             console.log("Logged in: ",loggedIn);
                             setProfileDetails(profileData); 
-            
+
                     }).catch((error)=>{
                         console.log(error);
-                        console.log("Unable to obtain profile data")
+                        console.log("Unable to obtain profile data");
                     })
-                                
-                                //setLoggedIn(true);
+                      //setLoggedIn(true);
                     }).catch((error)=>{
                         console.log("Error while getting access and refresh tokens. Redirecting back to homepage");
                         console.log(error.message)
@@ -96,17 +96,17 @@ const Profile=(props)=>{
         //setLoggedIn(true);
         
     },[]) //this useEffect hook is only executed once, when the Profile component is initially rendered.
-   const getFavouriteArtists=()=>{  //get favourite artists
+   
+    const getFavouriteArtists=()=>{  //get favourite artists
 
     axios.get("http://localhost:3001/getFavouriteArtists",{withCredentials:true}).then((response)=>{
     //response would be an array of objects, loop through the array and display a list component for each object
     const responseData=response.data;
     console.log(response.data);
-   const artists=responseData.map((artist)=><List type="Artist" key={artist.name} name={artist.name} artistImage={artist.image} followers={artist.followers} genres={artist.genres} />)
-      //const artists="your favourite artists here!";
-      console.log("Finished making the list")
+    const artists=responseData.map((artist)=><List type="Artist" style={listStyle} key={artist.name} name={artist.name} artistImage={artist.image} followers={artist.followers} genres={artist.genres} />)
       setFavouriteArtists(artists); 
     })
+    
    }
 
    const getFavouriteTracks=()=>{
@@ -114,9 +114,9 @@ const Profile=(props)=>{
         console.log(response.data);//should be automatically parsed JSON data.
 
         const tracksData=response.data;
-        console.log("Favourite tracks", tracksData);
-        const tracks=tracksData.map((track)=><List type="Track"key={track.id} name={track.name} album={track.album} artist={track.artist} albumImage={track.albumImage} previewURL={track.previewURL} />)
-        console.log("Finished making the list");
+       // console.log("Favourite tracks", tracksData);
+        const tracks=tracksData.map((track)=><List type="Track" style={listStyle} key={track.id} name={track.name} album={track.album} artist={track.artist} albumImage={track.albumImage} previewURL={track.previewURL} />)
+        //console.log("Finished making the list");
         setFavouriteTracks(tracks);
         })
      }
@@ -129,19 +129,19 @@ const Profile=(props)=>{
             <Grid container spacing={1}>
 
                 <Grid item xs={12} md={12} >
-                <ProfileCardComponent content={profileDetails}/>
+                <ProfileCard style={pageStyle}content={profileDetails}/>
                 </Grid>
 
                 <Grid item xs={12} md={12} >
-                <Favourites style={appbarStyle}text="Your Favourite Artists" onClickFunction={getFavouriteArtists} content={favouriteArtists} />
+                <Favourites style={pageStyle}text="Your Favourite Artists" onClickFunction={getFavouriteArtists} content={favouriteArtists} />
                 </Grid>
                
                 <Grid item xs={12} md={12}>
-                <Favourites style={appbarStyle}text="Your Favourite Tracks" onClickFunction={getFavouriteTracks} content={favouriteTracks} />
+                <Favourites style={pageStyle}text="Your Favourite Tracks" onClickFunction={getFavouriteTracks} content={favouriteTracks} />
                 </Grid>
 
                 <Grid item xs={12} md={12} >
-                    <div style={{paddingTop:30}}>
+                    <div style={{marginTop:30}}>
                     <Footer style={appbarStyle}/> 
                     </div>
                 </Grid>
@@ -151,7 +151,7 @@ const Profile=(props)=>{
         )
     }
     
-    else{ //show a loading screen
+    else{ //show a loading or blank screen.
         return(
             <>
            

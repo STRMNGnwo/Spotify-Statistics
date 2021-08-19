@@ -2,8 +2,7 @@ import React from 'react'
 import {Typography,AppBar,Toolbar} from "@material-ui/core"
 
 const Footer=(props)=>{
-
-
+    
     console.log(props);
 
     const style={

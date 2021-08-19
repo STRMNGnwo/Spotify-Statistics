@@ -26,8 +26,8 @@ const Favourites=(props)=>{
                 <Grid item xs={12} sm={12} md={12} >
          {/*return a Card Component*/}
          <Card raised={true} >
-             <CardContent style={{textAlign:"center"}}>
-                 <Typography align="center" color="textPrimary" variant="h2"> {`${props.text} are`} </Typography>
+             <CardContent style={{...props.style,textAlign:"center"}}>
+                 <Typography align="center"  variant="h2"> {`${props.text} are`} </Typography>
                  {/*display props.content here, which would be a list of artist names or track names*/}
                 
                 <ol> {props.content}</ol>  {/* Actually the most important bit xD */}

@@ -3,10 +3,10 @@ import {useState} from 'react'
 import {Grid,Card,CardActionArea,CardMedia,CardContent,Typography} from '@material-ui/core'
 import Header from "./Header.js"
 import Footer from "./Footer.js"
-import LandingSectionImage2 from "../LandingSectionImage2.jpeg"
-import CardImage1 from "../CardImage1.jpeg"
-import CardImage2 from "../CardImage2.jpeg"
-import CardImage3 from "../CardImage3.jpeg"
+import LandingSectionImage2 from "../images/LandingSectionImage2.jpeg"
+import CardImage1 from "../images/CardImage1.jpeg"
+import CardImage2 from "../images/CardImage2.jpeg"
+import CardImage3 from "../images/CardImage3.jpeg"
 
 const Home=(props)=>{
 
@@ -23,7 +23,7 @@ const Home=(props)=>{
      pageStyle=currentDarkMode?{ backgroundColor:"white",color:"black" }: {  backgroundColor:"black",color:"white" }
 
      document.body.style.backgroundColor=pageStyle.backgroundColor; //probably bad practice, but only way to ensure the entire page colour changes.
-    setDarkMode(!currentDarkMode); //changing the state, thus triggering a re-render of the component.
+     setDarkMode(!currentDarkMode); //changing the state, thus triggering a re-render of the component.
   }
 
   const style={
@@ -42,11 +42,12 @@ const Home=(props)=>{
   }
   
   const aboutSectionStyle={
-
     paddingTop:10,
     paddingBottom:10,
     height:500
   }
+
+  const cardHeight=300;
 
   return(
     <div style={style}>
@@ -57,73 +58,62 @@ const Home=(props)=>{
       {/*The Landing Page*/ }
      <Grid item xs={12} >
          <div style={landingSectionStyle}> 
-
          <Typography style={{paddingTop:100,fontSize:50,color:"white",opacity:7 }} variant="h6">Welcome to Spotify-Stats!</Typography>
-
          </div>
      </Grid>
      
      {/*The About Section*/}
 
-
      <Grid item xs={12} md={12} lg={12} xl={12} >  
-     
-     <Typography style={{paddingTop:60}} variant="h4" >FEATURES </Typography>
-     <Typography style={{paddingBottom:30}}variant="subtitle1">(not the music term, unfortunately) </Typography>
- 
+         <Typography style={{paddingTop:60}} variant="h4" >FEATURES </Typography>
+         <Typography style={{paddingBottom:30}}variant="subtitle1">(not the music term, unfortunately) </Typography>
       </Grid>
   
      <Grid item xs={12} md={12} lg={4} xl={4}  >  
-
-     <div style={aboutSectionStyle}>
-       
-     <Card variant="outlined">
-         <CardActionArea>
-         <CardMedia style={{height:300}}component="img" alt="Headphones" image={`${CardImage1}`} />
-         <CardContent>See Interesting Statistics from Spotify Usage</CardContent>
-         </CardActionArea>
-     </Card>
-
-     </div>
-
+         <div style={aboutSectionStyle}>
+            <Card variant="outlined">
+               <CardActionArea>
+                  <CardMedia style={{height:cardHeight}}component="img" alt="Headphones" image={`${CardImage1}`} />
+                  <CardContent>See Interesting Statistics from Spotify Usage</CardContent>
+                </CardActionArea>
+            </Card>
+         </div>
      </Grid>
 
      <Grid item  xs={12} md={12} lg={4} xl={4}> 
-
      <div style={aboutSectionStyle}>
      <Card variant="outlined">
          <CardActionArea>
-         <CardMedia style={{height:300}} component="img" alt="Headphones" image={`${CardImage2}`} />
-         <CardContent>Get your Top Artists, Albums, Tracks and more!</CardContent>
+              <CardMedia style={{height:cardHeight}} component="img" alt="Headphones" image={`${CardImage2}`} />
+              <CardContent>Get your Top Artists, Albums, Tracks and more!</CardContent>
          </CardActionArea>
      </Card>
      </div>
-
-
      </Grid>
 
       <Grid item  xs={12} md={12} lg={4} xl={4}> 
-
       <div style={aboutSectionStyle}>
-     <Card variant="outlined">
-         <CardActionArea>
-         <CardMedia style={{height:300}}component="img" alt="Headphones" image={`${CardImage3}`} />
-         <CardContent>Learn how you listen, using Spotify-Stats</CardContent>
-         </CardActionArea>
-     </Card>
+          <Card variant="outlined">
+              <CardActionArea>
+                   <CardMedia style={{height:cardHeight}}component="img" alt="Headphones" image={`${CardImage3}`} />
+                   <CardContent>Learn how you listen, using Spotify-Stats</CardContent>
+               </CardActionArea>
+          </Card>
      </div>
      </Grid>
      
      <Grid item  xs={12} md={12} lg={12} xl={12}> 
+     <div style={{marginTop:-10}}>
      <Footer style={appbarStyle}/>
+     </div>
      </Grid>
 
-     </Grid>
 
+     </Grid>{/*end of the continaer */}
 
     </div>
 
-)
+  )
 }
 
 export default Home;

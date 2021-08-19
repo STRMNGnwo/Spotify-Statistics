@@ -8,12 +8,15 @@ const List=(props)=>{
 
     const [modalOpen,setModalOpen]=useState(false);
 
-    console.log("Inside List component")
-    console.log("List props are: ",props); 
-    //var body;
+    //console.log("Inside List component")
+    //console.log("List props are: ",props); 
+    
     var modalBody;
 
-    //var modalBody= <> <img style={imageStyle} src={props.imageObject.url}></img>  <Typography style={{textAlign:"center"} } color="textPrimary" variant="body1">Name:{props.name} </Typography>     </>
+    const style=props.style;
+
+    //console.log("List style is: ",style);
+
     if(props.type==="Artist"){
         const imageURL=props.artistImage.url;
         const artistName= props.name;
@@ -34,18 +37,12 @@ const List=(props)=>{
         setModalOpen(!modalOpen)
     }
 
-    //body= <Button color="primary" style={{fontSize:20}} onClick={handleModalClick}>{props.name}</Button>
-    //console.log(body)
-
     return(
         <>
-           <li> <Button color="primary" style={{fontSize:20}} onClick={handleModalClick}>{props.name}</Button>  <Modal open={modalOpen} onClose={handleModalClick}><>{modalBody}</></Modal></li> 
+           <li> <Button style={{...style,fontSize:20,marginTop:10}} onClick={handleModalClick}>{props.name}</Button>  <Modal open={modalOpen} onClose={handleModalClick}><>{modalBody}</></Modal></li> 
            </>
     )
 }
 
 export default List
 
-
-//what if I make each list item (just the artist name), a clickable button, and when clicked, a modal is displayed with additional data?
- // body= <> <img style={imageStyle}src={props.imageObject.url} alt={`${props.name}'s image`}></img> <Typography style={{textAlign:"left"}}color="textPrimary" variant="h6" >{props.name} </Typography> </>; 

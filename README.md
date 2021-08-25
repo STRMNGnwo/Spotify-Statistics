@@ -5,12 +5,18 @@ A Website that shows the logged in user, their Top Artists and Tracks, using dat
 Current features:
 
 Finding out who your favourite artists are and what your favourite songs are.
+
 Viewing interesting stats about your Favourite Artists and Favourite Songs.
+
 Playing a 30- second preview of your favourite song.
+
 Track how many followers you have, in real time.
 
 Tech Stack: 
+
 Frontend: React(with help from MaterialUI :) )
+
 Backend:  Express, with Node as a runtime enviroment
+
 Packages: Listed in the package.json file.
 
